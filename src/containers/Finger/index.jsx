@@ -727,6 +727,15 @@ function FingerArea() {
               }}
             />
           )}
+
+          {/* Select All */}
+          {highlightAll && (
+            <img
+              src={allHand}
+              alt="highlight all hand"
+              class="absolute top-4.5 left-7.5 w-88 object-cover"
+            />
+          )}
         </div>
       </div>
 

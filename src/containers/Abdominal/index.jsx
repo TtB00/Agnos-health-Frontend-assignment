@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import abdominalPic from "../../assets/default-abs.png";
@@ -16,11 +16,17 @@ import suprapubicHighlight from "../../assets/suprapubic-highlight.png";
 import suprapubicCaption from "../../assets/suprapubic-active.png";
 import umbilicusHighlight from "../../assets/umbilicus-highlight.png";
 import umbilicusCaption from "../../assets/umbilicus-active.png";
+import allAbdominal from "../../assets/all-over-highlight.png";
 
 function AbdominalArea() {
   const navigate = useNavigate();
 
-  //button on abdominal
+  //navigate
+  const nextPage = () => {
+    navigate("/finger");
+  };
+
+  // button on abdominal
   const [buttonEpigastrium, setButtonEpigastrium] = useState(true);
   const [buttonLUQ, setButtonLUQ] = useState(true);
   const [buttonLLQ, setButtonLLQ] = useState(true);
@@ -28,6 +34,7 @@ function AbdominalArea() {
   const [buttonRLQ, setButtonRLQ] = useState(true);
   const [buttonSuprapubic, setButtonSuprapubic] = useState(true);
   const [buttonUmbilicus, setButtonUmbilicus] = useState(true);
+  const [buttonAll, setButtonAll] = useState(true);
 
   //button hide highlight
   const [buttonHideEpigastrium, setButtonHideEpigastrium] = useState(false);
@@ -46,6 +53,7 @@ function AbdominalArea() {
   const [highlightRLQ, setHighlightRLQ] = useState(false);
   const [highlightSuprapubic, setHighlightSuprapubic] = useState(false);
   const [highlightUmbilicus, setHighlightUmbilicus] = useState(false);
+  const [highlightAll, setHighlightAll] = useState(false);
 
   //Caption
   const [captionEpigastrium, setCaptionEpigastrium] = useState(false);
@@ -56,9 +64,68 @@ function AbdominalArea() {
   const [captionSuprapubic, setCaptionSuprapubic] = useState(false);
   const [captionUmbilicus, setCaptionUmbilicus] = useState(false);
 
-  const nextPage = () => {
-    navigate("/finger");
+  //check action
+  const actionSelect = () => {
+    return (
+      highlightEpigastrium ||
+      highlightLUQ ||
+      highlightLLQ ||
+      highlightRUQ ||
+      highlightRLQ ||
+      highlightSuprapubic ||
+      highlightUmbilicus
+    );
   };
+
+  //check all highlight
+  const checkHighlight = () => {
+    if (
+      highlightEpigastrium ||
+      highlightLUQ ||
+      highlightLLQ ||
+      highlightRUQ ||
+      highlightRLQ ||
+      highlightSuprapubic ||
+      highlightUmbilicus
+    ) {
+      setHighlightAll(false);
+    }
+  };
+
+  //update caption
+  useEffect(() => {
+    const updateCaption = () => {
+      const allHighlightsActive =
+        highlightEpigastrium &&
+        highlightLUQ &&
+        highlightLLQ &&
+        highlightRUQ &&
+        highlightRLQ &&
+        highlightSuprapubic &&
+        highlightUmbilicus;
+
+      if (allHighlightsActive) {
+        setCaptionEpigastrium(false);
+        setCaptionLUQ(false);
+        setCaptionLLQ(false);
+        setCaptionRUQ(false);
+        setCaptionRLQ(false);
+        setCaptionSuprapubic(false);
+        setCaptionUmbilicus(false);
+        setHighlightAll(true);
+        setButtonAll(false);
+      } else {
+        setCaptionEpigastrium(highlightEpigastrium);
+        setCaptionLUQ(highlightLUQ);
+        setCaptionLLQ(highlightLLQ);
+        setCaptionRUQ(highlightRUQ);
+        setCaptionRLQ(highlightRLQ);
+        setCaptionSuprapubic(highlightSuprapubic);
+        setCaptionUmbilicus(highlightUmbilicus);
+      }
+    };
+    updateCaption();
+  });
 
   //Show
   const showEpigastrium = () => {
@@ -103,6 +170,45 @@ function AbdominalArea() {
     setHighlightUmbilicus(true);
     setCaptionUmbilicus(true);
   };
+  const showAll = () => {
+    setButtonAll(false);
+    setHighlightAll(true);
+
+    setButtonEpigastrium(false);
+    setButtonHideEpigastrium(true);
+    setHighlightEpigastrium(true);
+    setCaptionEpigastrium(true);
+
+    setButtonLUQ(false);
+    setButtonHideLUQ(true);
+    setHighlightLUQ(true);
+    setCaptionLUQ(true);
+
+    setButtonLLQ(false);
+    setButtonHideLLQ(true);
+    setHighlightLLQ(true);
+    setCaptionLLQ(true);
+
+    setButtonRUQ(false);
+    setButtonHideRUQ(true);
+    setHighlightRUQ(true);
+    setCaptionRUQ(true);
+
+    setButtonRLQ(false);
+    setButtonHideRLQ(true);
+    setHighlightRLQ(true);
+    setCaptionRLQ(true);
+
+    setButtonSuprapubic(false);
+    setButtonHideSuprapubic(true);
+    setHighlightSuprapubic(true);
+    setCaptionSuprapubic(true);
+
+    setButtonUmbilicus(false);
+    setButtonHideUmbilicus(true);
+    setHighlightUmbilicus(true);
+    setCaptionUmbilicus(true);
+  };
 
   //Hide
   const hideEpigastrium = () => {
@@ -110,42 +216,56 @@ function AbdominalArea() {
     setButtonHideEpigastrium(false);
     setHighlightEpigastrium(false);
     setCaptionEpigastrium(false);
+    setButtonAll(true);
+    checkHighlight();
   };
   const hideLUQ = () => {
     setButtonLUQ(true);
     setButtonHideLUQ(false);
     setHighlightLUQ(false);
     setCaptionLUQ(false);
+    setButtonAll(true);
+    checkHighlight();
   };
   const hideLLQ = () => {
     setButtonLLQ(true);
     setButtonHideLLQ(false);
     setHighlightLLQ(false);
     setCaptionLLQ(false);
+    setButtonAll(true);
+    checkHighlight();
   };
   const hideRUQ = () => {
     setButtonRUQ(true);
     setButtonHideRUQ(false);
     setHighlightRUQ(false);
     setCaptionRUQ(false);
+    setButtonAll(true);
+    checkHighlight();
   };
   const hideRLQ = () => {
     setButtonRLQ(true);
     setButtonHideRLQ(false);
     setHighlightRLQ(false);
     setCaptionRLQ(false);
+    setButtonAll(true);
+    checkHighlight();
   };
   const hideSuprapubic = () => {
     setButtonSuprapubic(true);
     setButtonHideSuprapubic(false);
     setHighlightSuprapubic(false);
     setCaptionSuprapubic(false);
+    setButtonAll(true);
+    checkHighlight();
   };
   const hideUmbilicus = () => {
     setButtonUmbilicus(true);
     setButtonHideUmbilicus(false);
     setHighlightUmbilicus(false);
     setCaptionUmbilicus(false);
+    setButtonAll(true);
+    checkHighlight();
   };
 
   return (
@@ -263,6 +383,21 @@ function AbdominalArea() {
                 height: "36px",
                 top: "220px",
                 left: "165px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonAll && (
+            <button
+              type="button"
+              onClick={showAll}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-full"
+              class="absolute rounded-full"
+              style={{
+                width: "121px",
+                height: "38px",
+                top: "393px",
+                left: "122px",
                 zIndex: 1,
               }}
             />
@@ -484,13 +619,27 @@ function AbdominalArea() {
               }}
             />
           )}
+
+          {/* Select All */}
+          {highlightAll && (
+            <img
+              src={allAbdominal}
+              alt="highlight all abdominal"
+              class="absolute top-4.5 left-7.5 w-88 object-cover"
+            />
+          )}
         </div>
       </div>
 
       <button
         type="button"
         onClick={nextPage}
-        class="focus:outline-none text-white text-xl font-bold text-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-2xl px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 w-96"
+        disabled={!actionSelect()}
+        class={`focus:outline-none text-center text-xl w-96 ${
+          !actionSelect()
+            ? "rounded-2xl px-5 py-2.5 mb-2 text-zinc-400 bg-zinc-200 opacity-50 cursor-not-allowed"
+            : "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-2xl px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        }`}
       >
         ต่อไป
       </button>

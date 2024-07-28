@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import fingerPic from "../../assets/default-finger.png";
 import dipHighlight from "../../assets/dip-highlight.png";
@@ -7,8 +8,16 @@ import mcpHighlight from "../../assets/mcp-highlight.png";
 import mcpCaption from "../../assets/mcp-active.png";
 import pipHighlight from "../../assets/pip-highlight.png";
 import pipCaption from "../../assets/pip-active.png";
+import allHand from "../../assets/others-highlight.png";
 
 function FingerArea() {
+  const navigate = useNavigate();
+
+  //navigate
+  const nextPage = () => {
+    navigate("/abdominal");
+  };
+
   //button on finger
   const [buttonDIPmiddle, setButtonDIPmiddle] = useState(true);
   const [buttonDIPindex, setButtonDIPindex] = useState(true);
@@ -153,8 +162,8 @@ function FingerArea() {
             <button
               type="button"
               onClick={showDIP}
-              class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
-              // class="absolute rounded-lg"
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
               style={{
                 width: "25px",
                 height: "15px",
@@ -168,8 +177,8 @@ function FingerArea() {
             <button
               type="button"
               onClick={showDIP}
-              class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
-              // class="absolute rounded-lg"
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
               style={{
                 width: "25px",
                 height: "15px",
@@ -183,8 +192,8 @@ function FingerArea() {
             <button
               type="button"
               onClick={showDIP}
-              class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
-              // class="absolute rounded-lg"
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
               style={{
                 width: "23px",
                 height: "15px",
@@ -198,8 +207,8 @@ function FingerArea() {
             <button
               type="button"
               onClick={showDIP}
-              class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
-              // class="absolute rounded-lg"
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
               style={{
                 width: "22px",
                 height: "19px",
@@ -210,18 +219,155 @@ function FingerArea() {
             />
           )}
 
-          {/* Button mcp show highlight */}
+          {/* Button pip show highlight */}
           {buttonPIPmiddle && (
             <button
               type="button"
               onClick={showPIP}
-              class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
-              // class="absolute rounded-lg"
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
               style={{
                 width: "28px",
                 height: "17px",
                 top: "90px",
                 left: "166px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonPIPring && (
+            <button
+              type="button"
+              onClick={showPIP}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "27px",
+                height: "17px",
+                top: "106px",
+                left: "126px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonPIPindex && (
+            <button
+              type="button"
+              onClick={showPIP}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "28px",
+                height: "17px",
+                top: "96px",
+                left: "209px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonPIPlittle && (
+            <button
+              type="button"
+              onClick={showPIP}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "25px",
+                height: "17px",
+                top: "141px",
+                left: "90px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonPIPthumb && (
+            <button
+              type="button"
+              onClick={showPIP}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "24px",
+                height: "19px",
+                top: "184px",
+                left: "290px",
+                zIndex: 1,
+              }}
+            />
+          )}
+
+          {/* Button mcp show highlight */}
+          {buttonMCPmiddle && (
+            <button
+              type="button"
+              onClick={showMCP}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "32px",
+                height: "19px",
+                top: "158px",
+                left: "169px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonMCPring && (
+            <button
+              type="button"
+              onClick={showMCP}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "32px",
+                height: "19px",
+                top: "168px",
+                left: "135px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonMCPindex && (
+            <button
+              type="button"
+              onClick={showMCP}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "31px",
+                height: "20px",
+                top: "157px",
+                left: "205px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonMCPlittle && (
+            <button
+              type="button"
+              onClick={showMCP}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "30px",
+                height: "19px",
+                top: "183px",
+                left: "105px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonMCPthumb && (
+            <button
+              type="button"
+              onClick={showMCP}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "25px",
+                height: "24px",
+                top: "234px",
+                left: "260px",
                 zIndex: 1,
               }}
             />
@@ -246,8 +392,8 @@ function FingerArea() {
             <button
               type="button"
               onClick={hideDIP}
-              class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
-              // class="absolute rounded-lg"
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
               style={{
                 width: "25px",
                 height: "15px",
@@ -261,8 +407,8 @@ function FingerArea() {
             <button
               type="button"
               onClick={hideDIP}
-              class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
-              // class="absolute rounded-lg"
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
               style={{
                 width: "25px",
                 height: "15px",
@@ -276,8 +422,8 @@ function FingerArea() {
             <button
               type="button"
               onClick={hideDIP}
-              class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
-              // class="absolute rounded-lg"
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
               style={{
                 width: "23px",
                 height: "15px",
@@ -291,8 +437,8 @@ function FingerArea() {
             <button
               type="button"
               onClick={hideDIP}
-              class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
-              // class="absolute rounded-lg"
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
               style={{
                 width: "22px",
                 height: "19px",
@@ -303,7 +449,7 @@ function FingerArea() {
             />
           )}
 
-          {/* Select mcp */}
+          {/* Select pip */}
           {highlightPIP && (
             <img
               src={pipHighlight}
@@ -322,8 +468,8 @@ function FingerArea() {
             <button
               type="button"
               onClick={hidePIP}
-              class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
-              // class="absolute rounded-lg"
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
               style={{
                 width: "28px",
                 height: "17px",
@@ -333,15 +479,172 @@ function FingerArea() {
               }}
             />
           )}
+          {buttonHidePIPring && (
+            <button
+              type="button"
+              onClick={hidePIP}
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "27px",
+                height: "17px",
+                top: "106px",
+                left: "126px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonHidePIPindex && (
+            <button
+              type="button"
+              onClick={hidePIP}
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "28px",
+                height: "17px",
+                top: "96px",
+                left: "209px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonHidePIPlittle && (
+            <button
+              type="button"
+              onClick={hidePIP}
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "25px",
+                height: "17px",
+                top: "141px",
+                left: "90px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonHidePIPthumb && (
+            <button
+              type="button"
+              onClick={hidePIP}
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "24px",
+                height: "19px",
+                top: "184px",
+                left: "290px",
+                zIndex: 1,
+              }}
+            />
+          )}
+
+          {/* Select mcp */}
+          {highlightMCP && (
+            <img
+              src={mcpHighlight}
+              alt="mcp highlight"
+              class="absolute top-4.5 left-7.5 w-88 object-cover"
+            />
+          )}
+          {captionMCP && (
+            <img
+              src={mcpCaption}
+              alt="mcp caption"
+              class="absolute top-4.5 left-7.5 w-88 object-cover"
+            />
+          )}
+          {buttonHideMCPmiddle && (
+            <button
+              type="button"
+              onClick={hideMCP}
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "32px",
+                height: "19px",
+                top: "158px",
+                left: "169px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonHideMCPring && (
+            <button
+              type="button"
+              onClick={hideMCP}
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "32px",
+                height: "19px",
+                top: "168px",
+                left: "135px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonHideMCPindex && (
+            <button
+              type="button"
+              onClick={hideMCP}
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "31px",
+                height: "20px",
+                top: "157px",
+                left: "205px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonHideMCPlittle && (
+            <button
+              type="button"
+              onClick={hideMCP}
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "30px",
+                height: "19px",
+                top: "183px",
+                left: "105px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonHideMCPthumb && (
+            <button
+              type="button"
+              onClick={hideMCP}
+              // class="absolute bg-transparent border-2 border-dashed border-red-500 focus:outline-none rounded-lg"
+              class="absolute rounded-lg"
+              style={{
+                width: "25px",
+                height: "24px",
+                top: "234px",
+                left: "260px",
+                zIndex: 1,
+              }}
+            />
+          )}
         </div>
       </div>
 
       <button
         type="button"
-        // onClick={handleButtonClick}
-        class="focus:outline-none text-white text-xl font-bold text-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-2xl px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 w-96"
+        onClick={nextPage}
+        // disabled={!actionSelect()}
+        // class={`focus:outline-none text-center text-xl w-96 ${
+        //   !actionSelect()
+        //     ? "rounded-2xl px-5 py-2.5 mb-2 text-zinc-400 bg-zinc-200 opacity-50 cursor-not-allowed"
+        //     : "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-2xl px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        // }`}
+        class="focus:outline-none text-center text-xl w-96 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-2xl px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
       >
-        เสร็จสิ้น
+        ต่อไป
       </button>
     </div>
   );

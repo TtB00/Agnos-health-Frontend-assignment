@@ -271,7 +271,7 @@ function AbdominalArea() {
   return (
     <div class="p-14 flex flex-col justify-center items-center min-h-screen bg-gray-100">
       <div class="relative rounded-2xl border-2 border-white shadow-custom flex flex-col mb-4 pb-4 w-96 h-auto bg-white">
-        <h1 class="text-black text-xl font-bold text-center mt-4">
+        <h1 class="text-zinc-600 text-xl font-kanit text-center mt-4">
           จุดไหนที่คุณปวดท้องมากที่สุด ?
         </h1>
         <div class="flex justify-center items-center h-full relative">
@@ -635,7 +635,7 @@ function AbdominalArea() {
         type="button"
         onClick={nextPage}
         disabled={!actionSelect()}
-        class={`focus:outline-none text-center text-xl w-96 ${
+        class={`focus:outline-none font-kanit text-center text-xl w-96 ${
           !actionSelect()
             ? "rounded-2xl px-5 py-2.5 mb-2 text-zinc-400 bg-zinc-200 opacity-50 cursor-not-allowed"
             : "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-2xl px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"

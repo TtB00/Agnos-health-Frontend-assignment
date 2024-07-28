@@ -36,6 +36,8 @@ function FingerArea() {
   const [buttonPIPlittle, setButtonPIPlittle] = useState(true);
   const [buttonPIPthumb, setButtonPIPthumb] = useState(true);
 
+  const [buttonAll, setButtonAll] = useState(true);
+
   //button hide highlight
   const [buttonHideDIPmiddle, setButtonHideDIPmiddle] = useState(false);
   const [buttonHideDIPindex, setButtonHideDIPindex] = useState(false);
@@ -58,11 +60,44 @@ function FingerArea() {
   const [highlightDIP, setHighlightDIP] = useState(false);
   const [highlightMCP, setHighlightMCP] = useState(false);
   const [highlightPIP, setHighlightPIP] = useState(false);
+  const [highlightAll, setHighlightAll] = useState(false);
 
   //Caption
   const [captionDIP, setCaptionDIP] = useState(false);
   const [captionMCP, setCaptionMCP] = useState(false);
   const [captionPIP, setCaptionPIP] = useState(false);
+
+  //check action
+  const actionSelect = () => {
+    return highlightDIP || highlightMCP || highlightPIP;
+  };
+
+  //check all highlight
+  const checkHighlight = () => {
+    if (highlightDIP || highlightMCP || highlightPIP) {
+      setHighlightAll(false);
+    }
+  };
+
+  //update caption
+  useEffect(() => {
+    const updateCaption = () => {
+      const allHighlightsActive = highlightDIP && highlightMCP && highlightPIP;
+
+      if (allHighlightsActive) {
+        setCaptionDIP(false);
+        setCaptionMCP(false);
+        setCaptionPIP(false);
+        setHighlightAll(true);
+        setButtonAll(false);
+      } else {
+        setCaptionDIP(highlightDIP);
+        setCaptionMCP(highlightMCP);
+        setCaptionPIP(highlightPIP);
+      }
+    };
+    updateCaption();
+  });
 
   //Show
   const showDIP = () => {
@@ -105,6 +140,47 @@ function FingerArea() {
     setHighlightPIP(true);
     setCaptionPIP(true);
   };
+  const showAll = () => {
+    setButtonAll(false);
+    setHighlightAll(true);
+
+    setButtonDIPmiddle(false);
+    setButtonDIPindex(false);
+    setButtonDIPring(false);
+    setButtonDIPlittle(false);
+    setButtonHideDIPmiddle(true);
+    setButtonHideDIPindex(true);
+    setButtonHideDIPring(true);
+    setButtonHideDIPlittle(true);
+    setHighlightDIP(true);
+    setCaptionDIP(true);
+
+    setButtonMCPmiddle(false);
+    setButtonMCPindex(false);
+    setButtonMCPring(false);
+    setButtonMCPlittle(false);
+    setButtonMCPthumb(false);
+    setButtonHideMCPmiddle(true);
+    setButtonHideMCPindex(true);
+    setButtonHideMCPring(true);
+    setButtonHideMCPlittle(true);
+    setButtonHideMCPthumb(true);
+    setHighlightMCP(true);
+    setCaptionMCP(true);
+
+    setButtonPIPmiddle(false);
+    setButtonPIPindex(false);
+    setButtonPIPring(false);
+    setButtonPIPlittle(false);
+    setButtonPIPthumb(false);
+    setButtonHidePIPmiddle(true);
+    setButtonHidePIPindex(true);
+    setButtonHidePIPring(true);
+    setButtonHidePIPlittle(true);
+    setButtonHidePIPthumb(true);
+    setHighlightPIP(true);
+    setCaptionPIP(true);
+  };
 
   //Hide
   const hideDIP = () => {
@@ -118,6 +194,8 @@ function FingerArea() {
     setButtonHideDIPlittle(false);
     setHighlightDIP(false);
     setCaptionDIP(false);
+    setButtonAll(true);
+    checkHighlight();
   };
   const hideMCP = () => {
     setButtonMCPmiddle(true);
@@ -132,6 +210,8 @@ function FingerArea() {
     setButtonHideMCPthumb(false);
     setHighlightMCP(false);
     setCaptionMCP(false);
+    setButtonAll(true);
+    checkHighlight();
   };
   const hidePIP = () => {
     setButtonPIPmiddle(true);
@@ -146,6 +226,8 @@ function FingerArea() {
     setButtonHidePIPthumb(false);
     setHighlightPIP(false);
     setCaptionPIP(false);
+    setButtonAll(true);
+    checkHighlight();
   };
 
   return (
@@ -291,6 +373,21 @@ function FingerArea() {
                 height: "19px",
                 top: "184px",
                 left: "290px",
+                zIndex: 1,
+              }}
+            />
+          )}
+          {buttonAll && (
+            <button
+              type="button"
+              onClick={showAll}
+              // class="absolute bg-transparent border-2 border-dashed border-blue-500 focus:outline-none rounded-full"
+              class="absolute rounded-full"
+              style={{
+                width: "263px",
+                height: "38px",
+                top: "405px",
+                left: "54px",
                 zIndex: 1,
               }}
             />
@@ -636,13 +733,12 @@ function FingerArea() {
       <button
         type="button"
         onClick={nextPage}
-        // disabled={!actionSelect()}
-        // class={`focus:outline-none text-center text-xl w-96 ${
-        //   !actionSelect()
-        //     ? "rounded-2xl px-5 py-2.5 mb-2 text-zinc-400 bg-zinc-200 opacity-50 cursor-not-allowed"
-        //     : "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-2xl px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-        // }`}
-        class="focus:outline-none text-center text-xl w-96 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-2xl px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        disabled={!actionSelect()}
+        class={`focus:outline-none text-center text-xl w-96 ${
+          !actionSelect()
+            ? "rounded-2xl px-5 py-2.5 mb-2 text-zinc-400 bg-zinc-200 opacity-50 cursor-not-allowed"
+            : "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-2xl px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        }`}
       >
         ต่อไป
       </button>
